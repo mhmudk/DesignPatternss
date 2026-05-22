@@ -1,12 +1,12 @@
 import Decorator.Coffe.BaseCoffee
 import Decorator.Coffe.CoffeeWithMilkWithNuts
+import Proxy.AtmProxy
+import Proxy.CibBank
 
 fun main() {
 
 
-    val coffee  = CoffeeWithMilkWithNuts(
-        BaseCoffee()
-    )
-    println("The cost is "+coffee.getCost())
+    val atmProxy   = AtmProxy(CibBank())
 
+    println("withdraw from CIB bank"+atmProxy.withdraw(30))
 }
