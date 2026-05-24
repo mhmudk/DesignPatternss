@@ -1,12 +1,26 @@
 import Decorator.Coffe.BaseCoffee
 import Decorator.Coffe.CoffeeWithMilkWithNuts
+import Observer.OnReceivedScreen
+import Observer.OnWayScreen
+import Observer.OrderObserver
+import Observer.PendingScreen
 import Proxy.AtmProxy
 import Proxy.CibBank
 
 fun main() {
 
+    val orderObserver  = OrderObserver()
 
-    val atmProxy   = AtmProxy(CibBank())
+    val pendingScreen  = PendingScreen()
+    val onWayScreen = OnWayScreen()
+    val onReceivedScreen = OnReceivedScreen()
 
-    println("withdraw from CIB bank"+atmProxy.withdraw(30))
+    orderObserver.addSubscribeToOrderObserver(pendingScreen)
+    orderObserver.addSubscribeToOrderObserver(onWayScreen)
+    orderObserver.addSubscribeToOrderObserver(onReceivedScreen)
+
+    orderObserver.changeOrderStatus("welcome to observer pattern")
+
+
+
 }
