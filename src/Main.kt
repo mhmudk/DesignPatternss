@@ -1,3 +1,5 @@
+import AbstractFactory.PosOperation
+import AbstractFactory.pax.PaxFactory
 import Decorator.Coffe.BaseCoffee
 import Decorator.Coffe.CoffeeWithMilkWithNuts
 import Observer.OnReceivedScreen
@@ -9,18 +11,11 @@ import Proxy.CibBank
 
 fun main() {
 
-    val orderObserver  = OrderObserver()
+    val pax = PosOperation(
+        PaxFactory
+    )
 
-    val pendingScreen  = PendingScreen()
-    val onWayScreen = OnWayScreen()
-    val onReceivedScreen = OnReceivedScreen()
-
-    orderObserver.addSubscribeToOrderObserver(pendingScreen)
-    orderObserver.addSubscribeToOrderObserver(onWayScreen)
-    orderObserver.addSubscribeToOrderObserver(onReceivedScreen)
-
-    orderObserver.changeOrderStatus("welcome to observer pattern")
-
+    pax.doOperation()
 
 
 }
